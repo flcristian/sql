@@ -66,4 +66,42 @@ select * from user where name like "C%";
 -- (ASUMING WE HAVE A PEOPLE TABLE THAT HAS AN AGE COLUMN)
 select * from people where birth_date = "____-02-__";
 
+---------------------------------------------------------------
+
+-- UPDATING A COLUMN FOR ALL ROWS
+-- EXAMPLE : CHANGING EVERY USER'S NAME TO "NAME"
+update user set name = "Name";
+
+---------------------------------------------------------------
+
+-- UPDATING SPECIFIC ROWS
+-- EXAMPLE : CHANGING THE EMAIL OF USER WITH ID 2
+update user set email = "new_email" where id = 2;
+
+---------------------------------------------------------------
+
+-- DELETING ALL DATA FROM A TABLE
+delete from user;
+
+---------------------------------------------------------------
+
+-- DELETING SPECIFIC ROWS
+-- EXAMPLE: DELETING ALL DOCTORS
+delete from user where user_type = "Doctor";
+
+---------------------------------------------------------------
+
+-- TRANSACTIONS : 
+-- BEGIN A TRANSACTION :
+begin transaction;
+-- OR
+begin;
+
+-- SAVE DATABASE AND END TRANSACTION
+commit;
+
+-- ROLLBACK TO THE STATE BEFORE BEGINNING THE TRANSACTION
+rollback;
+
+---------------------------------------------------------------
 
