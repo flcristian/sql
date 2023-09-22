@@ -105,3 +105,51 @@ rollback;
 
 ---------------------------------------------------------------
 
+-- ORDERING BY CRITERIAS
+-- SINGLE CRIETRIA
+select * from user order by name;
+-- MULTIPLE CRITERIA
+select * from user order by user_type,name;
+-- ORDERING PRIORITY IS LEFT TO RIGHT
+-- YOU CAN SORT IN DESCENDING ORDER
+select * from user order by id desc;
+
+---------------------------------------------------------------
+
+-- LIMITING RESULTS
+-- EXAMPLE : SEARCH FOR THE FIRST 10 ROWS IN THE TABLE
+select * from user limit 10;
+-- EXAMPLE WITH OFFSET, SEARCHING FOR THE FIRST 10 AFTER THE FIRST 10
+select * from user limit 10, 10;
+-- OR
+select * from user limit 10 offset 10;
+
+---------------------------------------------------------------
+
+-- FUNCTIONS :
+
+-- CONCAT("value1", "value2", "value3", . . .) - concatenate more strings
+-- LENGTH(column) - get the length of a string
+-- UPPER(column) - transform text to uppercase
+-- LOWER(column) - transform text to lowercase
+-- SUBSTR(string, start, length) - get a specific substring
+-- REPLACE(column, target string, replacement string) - replace specific strings on a column
+-- COUNT(column) - number of rows
+-- SUM(column) - total sum of values on the column
+-- AVG(column) - average value on the column
+-- MAX(column) - get the maximum value
+-- MIN(column) - get the minimum value
+
+---------------------------------------------------------------
+
+-- MATHEMATICAL OPERATORS : * / + -
+-- EXAMPLE : 
+select id * 10 from user;
+
+---------------------------------------------------------------
+
+-- GET THE CURRENT DATE :
+
+-- CURDATE() - get the current date
+-- CURTIME() - get the current time
+-- NOW() - get the current date and time
