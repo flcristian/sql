@@ -153,3 +153,56 @@ select id * 10 from user;
 -- CURDATE() - get the current date
 -- CURTIME() - get the current time
 -- NOW() - get the current date and time
+
+
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-- QUERYING - RELATIONAL - QUERYING - RELATIONAL - QUERYING - RELATIONAL
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+
+-- INNER JOIN
+-- YOU CAN MERGE TWO TABLES INTO ONE BY USING THEIR COMMON VALUE, IN THIS CASE, THE USER ID
+select username, image_url as image from users
+    inner join photos on users.id = photos.user_id;
+
+
+-- OUTER JOIN
+-- YOU CAN MERGE TWO TABLES AND GET THE PHOTO COUNTS OF ALL USERS
+select users.username, count(photos.image_url) as count from users
+    left outer join photos on users.id = photos.user_id
+group by users.username
+order by count desc limit 2;
+
+select users.username as User, count(follows.follower_id) as Followers from follows
+    right outer join users on follows.followee_id = users.id
+group by users.username
+order by Followers desc limit 5;
+
+-- MERGING DATA OPERATIONS
+-- UNION
+-- UNION ALL
+-- INTERSECT
+-- EXCEPT
+
+-- SEE USERS WHO FOLLOW USER WITH ID 2 OR USER WITH ID 3
+select username from users where id in
+                           (select follower_id from follows where followee_id = 2
+                           union
+                           select follower_id from follows where followee_id = 3);
+
+-- SEE USERS WHO FOLLOW BOTH USER WITH ID 2 AND USER WITH ID 3
+select username from users where id in
+                           (select follower_id from follows where followee_id = 2
+                           intersect
+                           select follower_id from follows where followee_id = 3);
+
+-- SEE USERS WHO FOLLOW USER WITH ID 2 AND NOT USER WITH ID 3
+select username from users where id in
+                           (select follower_id from follows where followee_id = 2
+                           except
+                           select follower_id from follows where followee_id = 3);
+
+-- SUBQUERIES
+-- DISPLAY USERNAMES OF USERS THAT FOLLOW USER WITH ID 3
+select username from users where id in (select follower_id from follows where followee_id = 3);
